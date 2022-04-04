@@ -1,28 +1,21 @@
 package com.springbootrestapi.board;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 
-@Controller
-@RequestMapping(value = "/api/board")
+@RestController
+@RequiredArgsConstructor
 public class BoardController {
 
     private BoardService boardService;
 
-    @GetMapping("/")
-    public String list(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
-        List<BoardDto> boardList = boardService.getBoardList(pageNum);
-        Integer[] pageList = boardService.getPageList(pageNum);
-
-        model.addAttribute("boardList", boardList);
-        model.addAttribute("pageList", pageList);
-
-        return "board/list";
+    @RequestMapping(value= "/list", method = RequestMethod.GET)
+    public List<BoardDto> getPageList {
+        return boardService.getPageList(1);
     }
 }
