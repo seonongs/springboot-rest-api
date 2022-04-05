@@ -17,13 +17,12 @@ public class BoardDto {
     private LocalDateTime modifiedDate;
 
     public BoardEntity toEntity(){
-        BoardEntity boardEntity = BoardEntity.builder()
+        return BoardEntity.builder()
                 .id(id)
                 .writer(writer)
                 .title(title)
                 .content(content)
                 .build();
-        return boardEntity;
     }
 
     @Builder
