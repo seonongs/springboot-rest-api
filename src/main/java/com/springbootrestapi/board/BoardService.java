@@ -13,9 +13,7 @@ public class BoardService {
     private BoardRepository boardRepository;
 
     public List<BoardEntity> findAll() {
-        List<BoardEntity> boards = new ArrayList<>();
-        boards.addAll(boardRepository.findAll());
-        return boards;
+        return new ArrayList<>(boardRepository.findAll());
     }
 
 }
